@@ -7,32 +7,26 @@ namespace _01_2__C_serverChatBot
 {
     internal class Program
     {
+        static string address = "127.0.0.1";
         static int port = 8080;
         static void Main(string[] args)
         {
-            // get address for start socket
-            IPAddress iPAddress = IPAddress.Parse("127.0.0.1"); //localhost
-            IPEndPoint ipPoint = new IPEndPoint(iPAddress, port);
+            IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(address), port);
 
-            // object for get address
-            EndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            IPEndPoint remoteEndPoint = null;
 
-            // create socket
-            Socket listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            UdpClient listener = new UdpClient(ipPoint);
+
             try
             {
-                // connect socket for local point
-                listenSocket.Bind(ipPoint);
                 Console.WriteLine("Server started! Waiting for connection...");
 
                 while (true)
                 {
                     // get message
-                    int bytes = 0;
-                    byte[] data = new byte[1024];
-                    bytes = listenSocket.ReceiveFrom(data, ref remoteEndPoint);
+                    byte[] data = listener.Receive(ref remoteEndPoint);
 
-                    string msg = Encoding.Unicode.GetString(data, 0, bytes);
+                    string msg = Encoding.Unicode.GetString(data);
                     Console.WriteLine($"{DateTime.Now.ToShortTimeString()}: {msg} from {remoteEndPoint}");
 
                     msg.ToLower();
@@ -83,7 +77,7 @@ namespace _01_2__C_serverChatBot
 
                     // send answer
                     data = Encoding.Unicode.GetBytes(message);
-                    listenSocket.SendTo(data, remoteEndPoint);
+                    listener.Send(data, data.Length, remoteEndPoint);
                 }
             }
             catch (Exception ex)

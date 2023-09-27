@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01(1)_C_MessegerWPF", "01_C_MessegerWPF\01(1)_C_MessegerWPF.csproj", "{B23ABF51-BCC5-475F-A0DE-FEB80AE3FAF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01(1)_C_MessegerWPF", "01_C_MessegerWPF\01(1)_C_MessegerWPF.csproj", "{B23ABF51-BCC5-475F-A0DE-FEB80AE3FAF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01(2)_C_serverChatBot", "01(2)_C_serverChatBot\01(2)_C_serverChatBot.csproj", "{E885571A-A26B-4E7F-A695-63CD90ABACE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01(2)_C_serverChatBot", "01(2)_C_serverChatBot\01(2)_C_serverChatBot.csproj", "{E885571A-A26B-4E7F-A695-63CD90ABACE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02(1)_SharedData", "02(1)_SharedData\02(1)_SharedData.csproj", "{3B0671C7-C41C-4871-8424-2882C2962A9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02(2)_C_Client", "02(2)_C_Client\02(2)_C_Client.csproj", "{0CAA8081-B254-42D1-9286-BB1A5325DB96}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B0671C7-C41C-4871-8424-2882C2962A9C} = {3B0671C7-C41C-4871-8424-2882C2962A9C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02(3)_C_Serever", "02(3)_C_Serever\02(3)_C_Serever.csproj", "{ED32FCB7-FCBF-440B-90D3-731DCDB7F58D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B0671C7-C41C-4871-8424-2882C2962A9C} = {3B0671C7-C41C-4871-8424-2882C2962A9C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +33,18 @@ Global
 		{E885571A-A26B-4E7F-A695-63CD90ABACE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E885571A-A26B-4E7F-A695-63CD90ABACE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E885571A-A26B-4E7F-A695-63CD90ABACE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B0671C7-C41C-4871-8424-2882C2962A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0671C7-C41C-4871-8424-2882C2962A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B0671C7-C41C-4871-8424-2882C2962A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B0671C7-C41C-4871-8424-2882C2962A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CAA8081-B254-42D1-9286-BB1A5325DB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CAA8081-B254-42D1-9286-BB1A5325DB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CAA8081-B254-42D1-9286-BB1A5325DB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CAA8081-B254-42D1-9286-BB1A5325DB96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED32FCB7-FCBF-440B-90D3-731DCDB7F58D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED32FCB7-FCBF-440B-90D3-731DCDB7F58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED32FCB7-FCBF-440B-90D3-731DCDB7F58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED32FCB7-FCBF-440B-90D3-731DCDB7F58D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

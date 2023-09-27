@@ -22,31 +22,30 @@ namespace _01_C_MessegerWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        static int port = 8080; 
+        static int port = 8080;
         static string address = "127.0.0.1";
         public MainWindow()
         {
             InitializeComponent();
-            
+
         }
-        Socket socket;
+        UdpClient client;
         private void Send_Click(object sender, RoutedEventArgs e)
         {
             //port = int.Parse(PortTBox.Text);
-            //address = IpTBox.Text;
+            //address = IPAddress.Parse(IpTBox.Text);
+            IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(address), port);
+
+            IPEndPoint remoteIpPoint = new IPEndPoint(IPAddress.Any, 0);
+
+            client = new UdpClient();
             try
             {
-                IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(address), port);
 
-                EndPoint remoteIpPoint = new IPEndPoint(IPAddress.Any, 0);
-
-                socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-                string message = "";
+                string message = string.Empty;
                 while (true)
                 {
                     // Message :
-                    Console.Write("Enter a message: ");
                     message = MessageTBox.Text;
                     MessageTBox.Text = string.Empty;
 
@@ -59,21 +58,16 @@ namespace _01_C_MessegerWPF
                         MessagesLBox.Items.Add("");
 
                         // send :
-                        socket.SendTo(data, ipPoint);
+                        client.Send(data, data.Length, ipPoint);
 
                         // Receive answer :
-                        int bytes = 0;
-                        string response = "";
-                        data = new byte[1024]; // 1KB
-                        do
-                        {
-                            bytes = socket.ReceiveFrom(data, ref remoteIpPoint);
-                            response += Encoding.Unicode.GetString(data, 0, bytes);
-                        } while (socket.Available > 0);
+                        data = client.Receive(ref remoteIpPoint);
+                        string response = Encoding.Unicode.GetString(data);
 
                         MessagesLBox.Items.Add("Chat AI : ");
                         MessagesLBox.Items.Add(response);
                         MessagesLBox.Items.Add("");
+
                     }
                 }
             }
@@ -86,8 +80,7 @@ namespace _01_C_MessegerWPF
         private void EndChat_Click(object sender, RoutedEventArgs e)
         {
             // Close socket
-            socket.Shutdown(SocketShutdown.Both);
-            socket.Close();
+            client.Close();
             this.Close();
         }
     }
