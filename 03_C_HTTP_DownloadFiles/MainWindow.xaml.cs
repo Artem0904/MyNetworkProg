@@ -29,7 +29,7 @@ namespace _03_C_HTTP_DownloadFiles
         string Category;
         string PhotoHeight;
         string PhotoWidth;
-        string DirecoryPath;
+        string FilePath;
 
         public MainWindow()
         {
@@ -46,7 +46,7 @@ namespace _03_C_HTTP_DownloadFiles
             Category = CategoryTBox.Text;
             PhotoHeight = HeightTBox.Text;
             PhotoWidth = WidthTBox.Text;
-            DirecoryPath = PathTBox.Text;
+            FilePath = PathTBox.Text;
 
             if (client.IsBusy)
             {
@@ -55,11 +55,11 @@ namespace _03_C_HTTP_DownloadFiles
             }
 
             // TODO: перевіряти шлях на коректність перед завантаженням
-            if(!Directory.Exists(DirecoryPath))
-            {
-                MessageBox.Show("Directory not exists! Try agin...");
-                return;
-            }
+            //if(!Path.Exists(FilePath))
+            //{
+            //    MessageBox.Show("FilePath not exists! Try agin...");
+            //    return;
+            //}
             Address = $"https://source.unsplash.com/random/{PhotoWidth}x{PhotoHeight}/?{Category}";
             DownloadFileAsync(Address);
         }
@@ -67,8 +67,7 @@ namespace _03_C_HTTP_DownloadFiles
         private async void DownloadFileAsync(string address)
         {
             // вибір шляху збереження надати користувачу
-            string fileName = Path.GetFileName(address);
-            string destination = Path.Combine(DirecoryPath, fileName);
+            string destination = FilePath;
 
             // додати обробку помилок (try catch)
             try
@@ -77,7 +76,7 @@ namespace _03_C_HTTP_DownloadFiles
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.StackTrace);
             }
         }
 
