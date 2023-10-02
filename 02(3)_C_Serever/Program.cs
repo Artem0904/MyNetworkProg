@@ -27,6 +27,7 @@ namespace _02_3__C_Serever
             while (true)
             {
                 Console.WriteLine("Server started! Waiting for connection...");
+                listener.Start();
                 TcpClient client = listener.AcceptTcpClient(); // wait until connection
 
                 try
@@ -57,30 +58,32 @@ namespace _02_3__C_Serever
                         string response;
                         if (numInList != -1)
                         {
+                            Car CarByVIN = Cars[numInList];
                             response = @$"
-Result :
+                            Result :
 
-VIN : {Cars[numInList].number}
-Model : {Cars[numInList].model}
-Run : {Cars[numInList].run}
-Is painted : {Cars[numInList].painted}
-Is beaten : {Cars[numInList].beaten}
-Is flooded : {Cars[numInList].sank}
-Is electro : {Cars[numInList].electro} 
-";
-
+                            VIN : {Cars[numInList].number}
+                            Model : {Cars[numInList].model}
+                            Run : {Cars[numInList].run}
+                            Is painted : {Cars[numInList].painted}
+                            Is beaten : {Cars[numInList].beaten}
+                            Is flooded : {Cars[numInList].sank}
+                            Is electro : {Cars[numInList].electro} 
+                            ";
+                            //CarInfo carInfo = new CarInfo();
+                            //carInfo.Info = response;
+                            JsonSerializer.Serialize(ns, CarByVIN);
                         }
                         else
                             response = "VIN of car not found!";
  
                         Console.WriteLine(response);
 
-                        StreamWriter sw = new StreamWriter(ns); // розмір буфера за замовчуванням: 1KB
-                        sw.WriteLine(response);
-                        sw.Flush(); // clear buffer
+                        //StreamWriter sw = new StreamWriter(ns); // розмір буфера за замовчуванням: 1KB
+                        //sw.Write(response);
+                        //sw.Flush(); // clear buffer
                     }
 
-                    // закриваємо сокет
                     client.Close();
                 }
                 catch (Exception ex)

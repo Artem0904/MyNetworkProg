@@ -46,8 +46,6 @@ namespace _02_2__C_Client
             {
                 string VinNumber = string.Empty;
 
-
-
                 // введення даних для відправки
                 VinNumber = VINTBox.Text;
                 VINTBox.Text = string.Empty;
@@ -65,11 +63,24 @@ namespace _02_2__C_Client
 
                 // отримуємо відповідь
 
-                StreamReader sr = new StreamReader(ns);
-                string response = sr.ReadLine();
+                //StreamReader sr = new StreamReader(ns);
+                //string response = sr.ReadToEnd();
 
-                //Console.WriteLine("Server response: " + response);
-                MessageBox.Show(response, "", MessageBoxButton.OK);
+                var CarVIN = (Car)JsonSerializer.Deserialize(ns, typeof(Car));
+
+                string response = @$"
+Result :
+
+VIN : {CarVIN.number}
+Model : {CarVIN.model}
+Run : {CarVIN.run}
+Is painted : {CarVIN.painted}
+Is beaten : {CarVIN.beaten}
+Is flooded : {CarVIN.sank}
+Is electro : {CarVIN.electro} 
+"; ;
+
+                MessageBox.Show(response);
 
 
             }

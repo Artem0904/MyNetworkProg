@@ -21,4 +21,10 @@
             this.electro = electro;
         }
     }
+
+    [Serializable]
+    public class CarInfo
+    {
+        public string Info = string.Empty;
+    }
 }
