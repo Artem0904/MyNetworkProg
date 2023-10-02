@@ -3,13 +3,14 @@
     [Serializable]
     public class Car
     {
-        public string number = string.Empty;
-        public string run = string.Empty;
-        public string model = string.Empty;
-        public bool painted = false;
-        public bool beaten = false;
-        public bool sank = false;
-        public bool electro = false;
+        //public int MyProperty { get; set; }
+        public string number { get; set; }
+        public string run {get; set; }
+        public string model { get; set; }
+        public bool sank { get; set; }
+        public bool painted { get; set; }
+        public bool beaten { get; set; }
+        public bool electro { get; set; }
         public Car(string number, string run, string model, bool painted, bool beaten, bool sank, bool electro)
         {
             this.number = number;
@@ -22,9 +23,5 @@
         }
     }
 
-    [Serializable]
-    public class CarInfo
-    {
-        public string Info = string.Empty;
-    }
+ 
 }

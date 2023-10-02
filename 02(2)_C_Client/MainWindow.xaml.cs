@@ -53,20 +53,12 @@ namespace _02_2__C_Client
                 // отримуємо потік для обміну повідомленнями
                 NetworkStream ns = client.GetStream();
 
-                // серіалізація об'єкта та відправка його
-                //JsonSerializer.Serialize(ns, VinNumber);
-
                 StreamWriter sw = new StreamWriter(ns);
                 sw.WriteLine(VinNumber);
 
                 sw.Flush();
 
-                // отримуємо відповідь
-
-                //StreamReader sr = new StreamReader(ns);
-                //string response = sr.ReadToEnd();
-
-                var CarVIN = (Car)JsonSerializer.Deserialize(ns, typeof(Car));
+                var CarVIN = (Car?)JsonSerializer.Deserialize(ns, typeof(Car));
 
                 string response = @$"
 Result :
@@ -78,11 +70,8 @@ Is painted : {CarVIN.painted}
 Is beaten : {CarVIN.beaten}
 Is flooded : {CarVIN.sank}
 Is electro : {CarVIN.electro} 
-"; ;
-
+";
                 MessageBox.Show(response);
-
-
             }
             catch (Exception ex)
             {

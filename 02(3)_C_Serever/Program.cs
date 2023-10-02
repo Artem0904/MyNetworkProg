@@ -16,18 +16,20 @@ namespace _02_3__C_Serever
 
             TcpListener listener = new TcpListener(ipPoint);
 
-            listener.Start(10);
+            
             List<Car> Cars = new List<Car>() { 
                 new Car("BK1111YA", "100 020 km", "BMW", true, false, false, true),
                 new Car("BK2222AA", "250 030 km", "Audi", false, false, false, false),
                 new Car("BK3333HT", "115 010 km", "Mercedess", true, true, true, true),
                 new Car("BK4444PC", "213 100 km", "Renaut", false, false, false, false),
                 new Car("BK5555MK", "97 523 km", "Opel", false, true, true, false)
-            }; 
+            };
+            
+            listener.Start(10);
+
             while (true)
             {
                 Console.WriteLine("Server started! Waiting for connection...");
-                listener.Start();
                 TcpClient client = listener.AcceptTcpClient(); // wait until connection
 
                 try
@@ -38,7 +40,7 @@ namespace _02_3__C_Serever
 
                         // отримуємо переданий об'єкт та десеріалізуємо його
 
-                        //string VINNum = JsonSerializer.Deserialize(ns, typeof(string));
+                        
                         StreamReader sr = new StreamReader(ns);
                         string VINNum = sr.ReadLine();
 
@@ -70,28 +72,29 @@ namespace _02_3__C_Serever
                             Is flooded : {Cars[numInList].sank}
                             Is electro : {Cars[numInList].electro} 
                             ";
-                            //CarInfo carInfo = new CarInfo();
-                            //carInfo.Info = response;
+                            
                             JsonSerializer.Serialize(ns, CarByVIN);
+
+                            ns.Flush();
+                            ns.Close();
                         }
                         else
                             response = "VIN of car not found!";
  
                         Console.WriteLine(response);
 
-                        //StreamWriter sw = new StreamWriter(ns); // розмір буфера за замовчуванням: 1KB
-                        //sw.Write(response);
-                        //sw.Flush(); // clear buffer
+                        
                     }
 
-                    client.Close();
+                  
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                listener.Stop(); 
+
             }
+                listener.Stop(); 
         }
     }
 }

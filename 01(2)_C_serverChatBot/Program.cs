@@ -26,10 +26,10 @@ namespace _01_2__C_serverChatBot
                     // get message
                     byte[] data = listener.Receive(ref remoteEndPoint);
 
-                    string msg = Encoding.Unicode.GetString(data);
+                    string msg = Encoding.Unicode.GetString(data).ToLower();
                     Console.WriteLine($"{DateTime.Now.ToShortTimeString()}: {msg} from {remoteEndPoint}");
 
-                    msg.ToLower();
+                    
                     string message = "";
                     Random rand = new Random();
                     int randNum = 0;

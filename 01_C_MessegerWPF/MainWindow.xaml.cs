@@ -32,8 +32,12 @@ namespace _01_C_MessegerWPF
         UdpClient client;
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            //port = int.Parse(PortTBox.Text);
-            //address = IPAddress.Parse(IpTBox.Text);
+            if(PortTBox.Text != string.Empty && IpTBox.Text != string.Empty)
+            {
+                port = int.Parse(PortTBox.Text);
+                address = IpTBox.Text;
+            }
+
             IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(address), port);
 
             IPEndPoint remoteIpPoint = new IPEndPoint(IPAddress.Any, 0);
@@ -43,8 +47,8 @@ namespace _01_C_MessegerWPF
             {
 
                 string message = string.Empty;
-                while (true)
-                {
+               // while (true)
+               // {
                     // Message :
                     message = MessageTBox.Text;
                     MessageTBox.Text = string.Empty;
@@ -69,7 +73,7 @@ namespace _01_C_MessegerWPF
                         MessagesLBox.Items.Add("");
 
                     }
-                }
+               // }
             }
             catch (Exception ex)
             {
