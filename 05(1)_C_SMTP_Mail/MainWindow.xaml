@@ -1,0 +1,29 @@
+﻿<Window x:Class="_05_1__C_SMTP_Mail.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_05_1__C_SMTP_Mail"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="600" MinHeight="350" MinWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Frame x:Name="_MyFrame" Grid.Row="0" Grid.RowSpan="3"/>
+
+        <ToolBar Grid.Row="6">
+            <Button x:Name="LoginButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Login_Click">Login</Button>
+            <Button x:Name="LogOutButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="LogOut_Click" IsEnabled="False">Log out</Button>
+            <Button Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Exit_Click">Exit</Button>
+        </ToolBar>
+
+        
+        
+        <!--<Button Grid.Row="3" Margin="100,30,100,10" FontSize="25" Click="Login_Click">Login</Button>-->
+    </Grid>
+</Window>

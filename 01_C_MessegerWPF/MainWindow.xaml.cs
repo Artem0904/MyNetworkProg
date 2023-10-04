@@ -47,8 +47,6 @@ namespace _01_C_MessegerWPF
             {
 
                 string message = string.Empty;
-               // while (true)
-               // {
                     // Message :
                     message = MessageTBox.Text;
                     MessageTBox.Text = string.Empty;
@@ -73,7 +71,7 @@ namespace _01_C_MessegerWPF
                         MessagesLBox.Items.Add("");
 
                     }
-               // }
+              
             }
             catch (Exception ex)
             {

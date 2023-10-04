@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02(3)_C_Serever", "02(3)_C_
 		{3B0671C7-C41C-4871-8424-2882C2962A9C} = {3B0671C7-C41C-4871-8424-2882C2962A9C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_C_HTTP_DownloadFiles", "03_C_HTTP_DownloadFiles\03_C_HTTP_DownloadFiles.csproj", "{A1E72FB0-7D27-4C25-87D5-195047B64931}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_C_HTTP_DownloadFiles", "03_C_HTTP_DownloadFiles\03_C_HTTP_DownloadFiles.csproj", "{A1E72FB0-7D27-4C25-87D5-195047B64931}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05(1)_C_SMTP_Mail", "05(1)_C_SMTP_Mail\05(1)_C_SMTP_Mail.csproj", "{BD273415-809D-47D8-898E-8B6018AE504C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{A1E72FB0-7D27-4C25-87D5-195047B64931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1E72FB0-7D27-4C25-87D5-195047B64931}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1E72FB0-7D27-4C25-87D5-195047B64931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD273415-809D-47D8-898E-8B6018AE504C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD273415-809D-47D8-898E-8B6018AE504C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD273415-809D-47D8-898E-8B6018AE504C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD273415-809D-47D8-898E-8B6018AE504C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
