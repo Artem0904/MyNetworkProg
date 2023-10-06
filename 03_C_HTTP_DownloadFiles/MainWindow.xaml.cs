@@ -31,6 +31,7 @@ namespace _03_C_HTTP_DownloadFiles
         string PhotoWidth;
         string FilePath;
 
+        bool pathIsOK = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -62,6 +63,7 @@ namespace _03_C_HTTP_DownloadFiles
             //}
             Address = $"https://source.unsplash.com/random/{PhotoWidth}x{PhotoHeight}/?{Category}";
             DownloadFileAsync(Address);
+            
         }
 
         private async void DownloadFileAsync(string address)
@@ -73,6 +75,7 @@ namespace _03_C_HTTP_DownloadFiles
             try
             {
                 await client.DownloadFileTaskAsync(address, destination); // своє ім'я ставити
+                pathIsOK = true;
             }
             catch(Exception ex)
             {
@@ -82,12 +85,22 @@ namespace _03_C_HTTP_DownloadFiles
 
         private void Client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            MessageBox.Show("Download complete!");
+            if (pathIsOK)
+            {
+                MessageBox.Show("Download complete!");
+                DownloadPBar.Value = 0;
+            }
         }
 
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            DownloadPBar.Value = e.ProgressPercentage;
+            if (pathIsOK)
+                DownloadPBar.Value = e.ProgressPercentage;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
