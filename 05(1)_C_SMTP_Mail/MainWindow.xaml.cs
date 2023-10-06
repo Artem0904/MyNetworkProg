@@ -28,6 +28,7 @@ namespace _05_1__C_SMTP_Mail
             InitializeComponent();
             _MyFrame.NavigationService.Navigate(new LoginPage());
             //loginPage = new LoginPage();
+            
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
