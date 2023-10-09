@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_06_C_IMAP_Mail"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,11 +16,17 @@
 
         <DockPanel>
             <TextBlock DockPanel.Dock="Top" TextAlignment="Center" Padding="4" FontWeight="Bold">Folders</TextBlock>
-            <ListBox Margin="4" x:Name="folderList" MouseDoubleClick="CheckMessages_DClick"></ListBox>
+            <ListBox Margin="4" x:Name="folderList" MouseDoubleClick="CheckSubjects_DClick"></ListBox>
         </DockPanel>
         <DockPanel Grid.Column="1">
-            <TextBlock DockPanel.Dock="Top" TextAlignment="Center" Padding="4" FontWeight="Bold">Messages</TextBlock>
-            <ListBox Margin="4" x:Name="messagesList" MouseDoubleClick="CheckMessages_DClick"></ListBox>
+            <TextBlock DockPanel.Dock="Top" TextAlignment="Center" Padding="4" FontWeight="Bold">Subjects</TextBlock>
+            <ListBox Margin="4" x:Name="subjectsList" MouseDoubleClick="CheckMessages_DClick"></ListBox>
         </DockPanel>
+
+        <DockPanel Grid.Column="2" Grid.ColumnSpan="2">
+            <TextBlock DockPanel.Dock="Top" TextAlignment="Center" Padding="4" FontWeight="Bold">Message</TextBlock>
+            <Frame x:Name="_MyFrame" Grid.Column="2" Grid.ColumnSpan="2" Margin="4,4,4,4"/>
+        </DockPanel>
+
     </Grid>
 </Window>

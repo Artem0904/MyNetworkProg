@@ -19,6 +19,7 @@ using MimeKit;
 using MailKit.Search;
 using MailKit.Security;
 using MailKit;
+using System.Net.Sockets;
 
 namespace _06_C_IMAP_Mail
 {
@@ -27,11 +28,15 @@ namespace _06_C_IMAP_Mail
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string username = "tmvlad33@gmail.com"; // change here
-        const string password = "gxknljmktrlthlyx"; // change here
+        const string username = "artemshadiuk@gmail.com"; // change here
+        const string password = "awlmhimwjozczybc"; // change here
 
         private ImapClient client = new();
-        private IList<IMailFolder> folders;
+        private List<IMailFolder> folders = new List<IMailFolder>();
+        private List<MimeMessage> Messages = new List<MimeMessage>();
+
+        string MessageText = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,42 +44,94 @@ namespace _06_C_IMAP_Mail
 
             client.Authenticate(username, password);
 
-            folders = client.GetFolders(client.PersonalNamespaces[0]); // зробити вибірку без ГМАІЛ папки
+            folders = client.GetFolders(client.PersonalNamespaces[0]).Where(x => x.Name != "[Gmail]").ToList();
+           
             foreach (var fl in folders)
             {
-                if (fl.Name == "[Gmail]")
-                    //folders.Remove(fl); //видалятииииииииииииииииии
                 folderList.Items.Add(fl.Name);
             }
         }
 
-        private void CheckMessages_DClick(object sender, MouseButtonEventArgs e)
+        private async void CheckSubjects_DClick(object sender, MouseButtonEventArgs e)
         {
+            if(subjectsList.Items.Count != 0)
+            {
+                subjectsList.Items.Clear();
+            }
             try
             {
-                int a = folderList.Items.IndexOf(folderList.SelectedItem);
-
-
-
-                var folder = client.GetFolder(MailKit.SpecialFolder.All);
-                folder.Open(MailKit.FolderAccess.ReadOnly);
-
-                //client.Inbox.Open(FolderAccess.ReadOnly);
-                IList<MailKit.UniqueId> uids = folder.Search(SearchQuery.All);
-
-                //if() name = inbox -^
-                foreach (var i in uids)
+                int FolderNum = folderList.Items.IndexOf(folderList.SelectedItem);
+                IMailFolder? folder = null;
+                MailKit.SpecialFolder SpFolder = MailKit.SpecialFolder.All;
+                switch (FolderNum)
                 {
-                    MimeMessage message = folder.GetMessage(i);
-                    messagesList.Items.Add($"{message.Subject}");
+                    case 0:
+                        break;
+                    case 1:
+                        SpFolder = MailKit.SpecialFolder.Flagged;
+                        break;
+                    case 2:
+                        SpFolder = MailKit.SpecialFolder.Important;
+                        break;
+                    case 3:
+                        SpFolder = MailKit.SpecialFolder.Trash;
+                        break;
+                    case 4:
+                        SpFolder = MailKit.SpecialFolder.Sent;
+                        break;
+                    case 5:
+                        SpFolder = MailKit.SpecialFolder.Junk;
+                        break;
+                    case 6:
+                        SpFolder = MailKit.SpecialFolder.All;
+                        break;
+                    case 7:
+                        SpFolder = MailKit.SpecialFolder.Drafts;
+                        break;
+                    default:
+                        MessageBox.Show("Some error! Try again!");
+                        return;
                 }
 
+                IList<MailKit.UniqueId> uids;
+                if(FolderNum == 0)
+                {
+                    await client.Inbox.OpenAsync(FolderAccess.ReadOnly);
+                    uids = await client.Inbox.SearchAsync(SearchQuery.All);
+                    foreach (var uid in uids)
+                    {
+                        var message = await client.Inbox.GetMessageAsync(uid);
+                        Messages.Add(message);
+                        subjectsList.Items.Add(message.Subject);
+                    }
+                    return;
+                }
+                else
+                {
+                    folder = client.GetFolder(SpFolder);
+                    await folder.OpenAsync(MailKit.FolderAccess.ReadOnly);
+                    uids = await folder.SearchAsync(SearchQuery.All);
+                }
+
+                foreach (var i in uids)
+                {
+                    MimeMessage message = await folder.GetMessageAsync(i);
+                    Messages.Add(message);
+                    subjectsList.Items.Add(message.Subject);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void CheckMessages_DClick(object sender, MouseButtonEventArgs e)
+        {
+            int SubjectNum = subjectsList.Items.IndexOf(subjectsList.SelectedItem);
+
+            _MyFrame.NavigationService.Navigate(new MessagePage(Messages[SubjectNum]));
         }
     }
 }

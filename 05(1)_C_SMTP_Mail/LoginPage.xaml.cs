@@ -61,8 +61,8 @@ namespace _05_1__C_SMTP_Mail
             {
                 MessageBox.Show(ex.Message);
             }
-            
-            NavigationService.Navigate(new ClientPage());
+
+            //_MyFrame.NavigationService.Navigate(new ClientPage());
 
             client.Disconnect(true);
             //LoginButton.IsEnabled = false;
