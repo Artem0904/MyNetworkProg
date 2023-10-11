@@ -133,5 +133,10 @@ namespace _06_C_IMAP_Mail
 
             _MyFrame.NavigationService.Navigate(new MessagePage(Messages[SubjectNum]));
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_06_C_IMAP_Mail"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="450" Width="1000" MinHeight="450" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <DockPanel>
             <TextBlock DockPanel.Dock="Top" TextAlignment="Center" Padding="4" FontWeight="Bold">Folders</TextBlock>
+            <Button FontSize="20" Click="Exit_Click" DockPanel.Dock="Bottom" Height="30" Margin="5" Background="{x:Null}">Exit</Button>
             <ListBox Margin="4" x:Name="folderList" MouseDoubleClick="CheckSubjects_DClick"></ListBox>
         </DockPanel>
         <DockPanel Grid.Column="1">
