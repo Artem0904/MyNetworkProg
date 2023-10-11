@@ -28,7 +28,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
+            <ToolBar Grid.Row="2" Grid.ColumnSpan="2">
+                <RadioButton GroupName="proiry" Margin="10,0,0,0">Low</RadioButton>
+                <RadioButton GroupName="proiry" Margin="20,0,0,0">Normal</RadioButton>
+                <RadioButton GroupName="proiry" Margin="20,0,0,0">High</RadioButton>
+            </ToolBar>
 
             <Label VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="20">To:</Label>
             <TextBox Name="ToTBox" Margin="5" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0"></TextBox>

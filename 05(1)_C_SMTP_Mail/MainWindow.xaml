@@ -22,8 +22,6 @@
             <Button Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Exit_Click">Exit</Button>
         </ToolBar>
 
-        
-        
         <!--<Button Grid.Row="3" Margin="100,30,100,10" FontSize="25" Click="Login_Click">Login</Button>-->
     </Grid>
 </Window>
