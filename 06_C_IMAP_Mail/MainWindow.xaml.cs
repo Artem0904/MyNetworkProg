@@ -28,8 +28,8 @@ namespace _06_C_IMAP_Mail
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string username = "artemshadiuk@gmail.com"; // change here
-        const string password = "awlmhimwjozczybc"; // change here
+        const string username = ""; // change here
+        const string password = ""; // change here
 
         private ImapClient client = new();
         private List<IMailFolder> folders = new List<IMailFolder>();

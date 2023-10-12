@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_05_1__C_SMTP_Mail"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600" MinHeight="350" MinWidth="600">
+        Title="MainWindow" Height="400" Width="600" MinHeight="400" MinWidth="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -17,7 +17,7 @@
         <Frame x:Name="_MyFrame" Grid.Row="0" Grid.RowSpan="3"/>
 
         <ToolBar Grid.Row="6">
-            <Button x:Name="LoginButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Login_Click">Login</Button>
+            <!--<Button x:Name="LoginButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Login_Click">Login</Button>-->
             <Button x:Name="LogOutButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="LogOut_Click" IsEnabled="False">Log out</Button>
             <Button Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Exit_Click">Exit</Button>
         </ToolBar>

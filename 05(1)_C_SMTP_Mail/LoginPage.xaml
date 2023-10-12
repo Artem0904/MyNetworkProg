@@ -8,7 +8,7 @@
       d:DesignHeight="350" d:DesignWidth="600"
       Title="LoginPage">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -20,11 +20,11 @@
         <Label Grid.Row="0"  FontSize="30" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalAlignment="Center">Login page</Label>
 
         <Label Grid.Row="1" FontSize="25" VerticalAlignment="Center" Margin="10" >Login :</Label>
-        <TextBox Grid.Row="1" x:Name="LoginTBox" Margin="140,10,10,10" Height="40">tmvlad33@gmail.com</TextBox>
+        <TextBox Grid.Row="1" x:Name="LoginTBox" FontSize="25" Margin="140,10,10,10" Height="40">artemshadiuk@gmail.com</TextBox>
 
         <Label Grid.Row="2" FontSize="25" VerticalAlignment="Center" Margin="10" Height="50">Password :</Label>
-        <TextBox Grid.Row="2" x:Name="PasswordTBox" Margin="140,10,10,10" Height="40">gxknljmktrlthlyx</TextBox>
+        <TextBox Grid.Row="2" x:Name="PasswordTBox" FontSize="25" Margin="140,10,10,10" Height="40">awlmhimwjozczybc</TextBox>
 
-        <Button Grid.Row="3" Margin="100,5,100,5" FontSize="25" Click="Login_Click">Login</Button>
+        <Button x:Name="LoginButton" Grid.Row="3" Margin="100,5,100,5" FontSize="25" Click="Login_Click">Login</Button>
     </Grid>
 </Page>

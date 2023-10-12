@@ -27,8 +27,8 @@ namespace _06_C_IMAP_Mail
     /// </summary>
     public partial class MessagePage : Page
     {
-        string ClientUsername = "artemshadiuk@gmail.com";
-        string ClientPassword = "awlmhimwjozczybc";
+        readonly string ClientUsername = ""; //user name
+        readonly string ClientPassword = ""; // user pass
 
         MimeMessage MessageFrom;
         MimeMessage YourMessage;

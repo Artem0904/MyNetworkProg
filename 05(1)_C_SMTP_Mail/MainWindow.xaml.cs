@@ -22,18 +22,14 @@ namespace _05_1__C_SMTP_Mail
     /// </summary>
     public partial class MainWindow : Window
     {
-       // LoginPage loginPage;
+        LoginPage loginPage;
         public MainWindow()
         {
             InitializeComponent();
-            _MyFrame.NavigationService.Navigate(new LoginPage());
+            loginPage = new LoginPage(this);
+            _MyFrame.NavigationService.Navigate(loginPage);
             //loginPage = new LoginPage();
             
-        }
-
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -43,7 +39,7 @@ namespace _05_1__C_SMTP_Mail
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 

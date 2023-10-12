@@ -23,35 +23,42 @@ namespace _05_1__C_SMTP_Mail
     public partial class LoginPage : Page
     {
         NavigationService nav;
-        SmtpClient client;
+        SmtpClient client = new SmtpClient();
         string? username;
         string? password;
 
+        public MainWindow ParentWindow { get; set; }
+
         ClientPage clientPage;
-        public LoginPage(ClientPage clientPage)
+        //public LoginPage(ClientPage clientPage, MainWindow parentWindow)
+        //{
+        //    InitializeComponent();
+        //    ParentWindow = parentWindow;
+        //    this.clientPage = clientPage;
+        //}
+
+        public LoginPage(MainWindow parentWindow)
         {
             InitializeComponent();
-            client = new SmtpClient();
-            this.clientPage = clientPage;
+            ParentWindow = parentWindow;
         }
 
-        public LoginPage() 
-        {
-            InitializeComponent();
-        }
-
-        //   tmvlad33@gmail.com
-        //   gxknljmktrlthlyx
-        private void Login_Click(object sender, RoutedEventArgs e)
+        //   artemshadiuk@gmail.com
+        //   awlmhimwjozczybc
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
             username = LoginTBox.Text;
             password = PasswordTBox.Text;
-
-            client.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
+            if (username == null || password == null)
+            {
+                MessageBox.Show("Fields are empty!");
+                return;
+            }
+            await client.ConnectAsync("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
 
             try
             {
-                client.Authenticate(username, password);
+                await client.AuthenticateAsync(username, password);
             }
             catch (AuthenticationException AunthEx)
             {
@@ -62,22 +69,10 @@ namespace _05_1__C_SMTP_Mail
                 MessageBox.Show(ex.Message);
             }
 
-            //_MyFrame.NavigationService.Navigate(new ClientPage());
-
-            client.Disconnect(true);
-            //LoginButton.IsEnabled = false;
-            //LogOutButton.IsEnabled = true;
+            clientPage = new ClientPage(username, password);
+            ParentWindow._MyFrame.NavigationService.Navigate(clientPage);
+            MessageBox.Show("YES");
+            await client.DisconnectAsync(true);
         }
-
-        //private void Exit_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //LoginButton.IsEnabled = false;
-        //    //this.Close();
-        //}
-
-        //private void LogOut_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //LoginButton.IsEnabled = true;
-        //}
     }
 }

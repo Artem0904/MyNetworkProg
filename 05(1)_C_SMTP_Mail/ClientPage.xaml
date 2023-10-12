@@ -32,9 +32,12 @@
             </Grid.RowDefinitions>
 
             <ToolBar Grid.Row="2" Grid.ColumnSpan="2">
-                <RadioButton GroupName="proiry" Margin="10,0,0,0">Low</RadioButton>
-                <RadioButton GroupName="proiry" Margin="20,0,0,0">Normal</RadioButton>
-                <RadioButton GroupName="proiry" Margin="20,0,0,0">High</RadioButton>
+                <Label>Priory :</Label>
+                <RadioButton x:Name="LowRButton" GroupName="proiry" Margin="0,0,0,0">Low</RadioButton>
+                <RadioButton x:Name="NormalRButton" GroupName="proiry" Margin="10,0,0,0" IsChecked="True">Normal</RadioButton>
+                <RadioButton x:Name="HighRButton" GroupName="proiry" Margin="10,0,0,0">High</RadioButton>
+                <Label>|</Label>
+                <Button x:Name="AtachmentButton" Grid.Column="1" Click="Atachments_Click" Background="{x:Null}">Add atachment</Button>
             </ToolBar>
 
             <Label VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="20">To:</Label>
@@ -45,9 +48,9 @@
         
         </Grid>
         
-        <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontWeight="Bold" FontSize="25">Message :</TextBlock>
-        
-        <Button Click="Send_Click" DockPanel.Dock="Bottom" Margin="5" Padding="8" FontSize="20" FontWeight="Bold">Send</Button>
+        <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontWeight="Bold" FontSize="15">Message :</TextBlock>
+
+        <Button Click="Send_Click" Height="40" DockPanel.Dock="Bottom" Margin="5" VerticalContentAlignment="Center" FontSize="17" FontWeight="Bold" Background="{x:Null}">Send</Button>
        
         <TextBox Name="MessageTBox" Margin="5" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
    
