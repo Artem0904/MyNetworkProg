@@ -14,11 +14,11 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Frame x:Name="_MyFrame" Grid.Row="0" Grid.RowSpan="3"/>
+        <Frame NavigationUIVisibility="Hidden" x:Name="_MyFrame" Grid.Row="0" Grid.RowSpan="3"/>
 
         <ToolBar Grid.Row="6">
             <!--<Button x:Name="LoginButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Login_Click">Login</Button>-->
-            <Button x:Name="LogOutButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="LogOut_Click" IsEnabled="False">Log out</Button>
+            <Button x:Name="LogOutButton" Height="30" Width="100" Margin="5" BorderBrush="Black" Click="LogOut_Click" >Log out</Button>
             <Button Height="30" Width="100" Margin="5" BorderBrush="Black" Click="Exit_Click">Exit</Button>
         </ToolBar>
 

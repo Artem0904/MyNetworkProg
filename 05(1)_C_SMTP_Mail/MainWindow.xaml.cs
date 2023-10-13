@@ -29,12 +29,12 @@ namespace _05_1__C_SMTP_Mail
             loginPage = new LoginPage(this);
             _MyFrame.NavigationService.Navigate(loginPage);
             //loginPage = new LoginPage();
-            
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-
+            loginPage = new LoginPage(this);
+            _MyFrame.NavigationService.Navigate(loginPage);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

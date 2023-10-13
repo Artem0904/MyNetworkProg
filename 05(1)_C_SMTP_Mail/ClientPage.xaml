@@ -14,11 +14,9 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        
-        
+        </Grid.RowDefinitions>      
     </Grid>-->
+    
     <DockPanel Background = "White">
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>

@@ -45,6 +45,11 @@ namespace _05_1__C_SMTP_Mail
 
         //   artemshadiuk@gmail.com
         //   awlmhimwjozczybc
+        private void ClearFields()
+        {
+            LoginTBox.Text = string.Empty;
+            PasswordTBox.Text = string.Empty;
+        }
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
             username = LoginTBox.Text;
@@ -63,15 +68,17 @@ namespace _05_1__C_SMTP_Mail
             catch (AuthenticationException AunthEx)
             {
                 MessageBox.Show($"Authentication failed. Check login and password: {AunthEx.Message}");
+                ClearFields();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                ClearFields();
             }
 
             clientPage = new ClientPage(username, password);
+            ClearFields();
             ParentWindow._MyFrame.NavigationService.Navigate(clientPage);
-            MessageBox.Show("YES");
             await client.DisconnectAsync(true);
         }
     }

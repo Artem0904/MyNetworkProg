@@ -36,6 +36,14 @@ namespace _05_1__C_SMTP_Mail
         BodyBuilder builder = new BodyBuilder();
         MimeMessage YourMessage;
 
+        private void ClearFields()
+        {
+            ToTBox.Text = string.Empty;
+            SubjectTBox.Text = string.Empty;
+            MessageTBox.Text = string.Empty;
+            NormalRButton.IsChecked = true;
+            builder = new BodyBuilder();
+        }
         private async void Send_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -66,6 +74,7 @@ namespace _05_1__C_SMTP_Mail
                 if (ToTBox.Text == string.Empty && SubjectTBox.Text == string.Empty && MessageTBox.Text == string.Empty)
                 {
                     MessageBox.Show("Fields are empty!");
+                    ClearFields();
                     return;
                 }
 
@@ -76,12 +85,9 @@ namespace _05_1__C_SMTP_Mail
                     await client.AuthenticateAsync(ClientUsername, ClientPassword);
 
                     await client.SendAsync(YourMessage);
+
                 }
-                ToTBox.Text = string.Empty;
-                SubjectTBox.Text = string.Empty;
-                MessageTBox.Text = string.Empty;
-                NormalRButton.IsChecked = true;
-                builder = new BodyBuilder();
+                ClearFields();
             }
             catch (Exception ex)
             {
@@ -97,7 +103,6 @@ namespace _05_1__C_SMTP_Mail
                 if (dialog.ShowDialog() == true)
                 {
                     builder.Attachments.Add(dialog.FileName);
-
                 }
             }
             catch (Exception ex)
