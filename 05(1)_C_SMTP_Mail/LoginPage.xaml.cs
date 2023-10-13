@@ -30,21 +30,12 @@ namespace _05_1__C_SMTP_Mail
         public MainWindow ParentWindow { get; set; }
 
         ClientPage clientPage;
-        //public LoginPage(ClientPage clientPage, MainWindow parentWindow)
-        //{
-        //    InitializeComponent();
-        //    ParentWindow = parentWindow;
-        //    this.clientPage = clientPage;
-        //}
-
         public LoginPage(MainWindow parentWindow)
         {
             InitializeComponent();
             ParentWindow = parentWindow;
         }
 
-        //   artemshadiuk@gmail.com
-        //   awlmhimwjozczybc
         private void ClearFields()
         {
             LoginTBox.Text = string.Empty;
